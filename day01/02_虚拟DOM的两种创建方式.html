@@ -1,0 +1,43 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2023-02-28 11:06:57
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2023-03-03 10:10:00
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="../js/react.development.js"></script>
+<script src="../js/react-dom.development.js"></script>
+<script src="../js/babel.min.js"></script>
+<body>
+  <div id="test"></div>
+
+  <script type="text/babel">
+    //  script标签type类型为 text/babel 也就是使用jsx语句
+    const VDOM = (
+      <h1 class="title">hello, Recat</h1>
+      )
+      console.log("虚拟DOM", VDOM)
+      console.log(typeof VDOM)
+      console.log(VDOM instanceof Object)
+      /**
+       * 关于虚拟DOM
+       *  1.本质上是object类型的对象（一般对象）
+       * 
+       * */  
+
+    // script标签 type类型为 text/javascript 
+    // const VDOM = React.createElement('h1', {id: 'title  ', class: 'more'}, 'hello,React')
+    // const VDOM = React.createElement('h1', {id: 'title  ', class: 'more'}, React.createElement('span', {class: 'title'}, 'span标签内容'))
+    ReactDOM.render(VDOM, document.querySelector('#test'))
+  </script>
+</body>
+</html>

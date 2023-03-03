@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 创建一个类
+    class Person {
+      // 构造器方法
+      constructor(name, age){
+        // 构造器中的this指向的是实例对象
+        this.name = name
+        this.age = age
+      }
+      // 一般方法
+      // say方法放在了类的原型对象上，供实例使用
+      // say方法中的this就是Person实例
+      say(){
+        console.log(`我的名字是${this.name}, 我的年龄为${this.age}`)
+      }
+    }
+    const p1 = new Person('小明', 18)
+
+    p1.say()
+
+
+    // 创建一个Student类，继承Person类
+    class Student extends Person{
+
+    }
+    const s1 = new Student('小红', 18)
+    s1.say()
+
+  </script>
+</body>
+</html>

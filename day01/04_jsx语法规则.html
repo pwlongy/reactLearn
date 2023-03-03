@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <style>
+    .boxSpan{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="test"></div>
+  <script type="text/babel">
+    const myID = 'box'
+    const data = 'myData'
+    const VDOM = (
+      <div className={myID}>
+        <span style={{color: '#fff', fontSize: '20px'}} className="boxSpan">{data}</span>
+      </div>
+    )
+
+    ReactDOM.render(VDOM, document.querySelector("#test"))
+
+    /*
+      jsx语法规则
+        1.定义虚拟DOM时不要写引号
+        2.标签中混入js表达式时要用花括号
+        3.样式的类名不要用class，要用className
+        4.内联样式需要用style={{key: value}}
+        5.虚拟DOM必须只有一个根标签
+        6.标签必须闭合
+        7.标签首字母 
+          (1). 若小写字母开头，则将该标签转为html中同名元素， 若html中无该标签对应的同名元素，则报错
+          (2). 若大写字母开头，react就去渲染对应的组件，若组件没有定义，则报错
+    
+    */ 
+  </script>
+</body>
+</html>
