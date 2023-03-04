@@ -8,6 +8,11 @@
 </head>
 <body>
   <script>
+    /*
+      1.类中的构造器不是必须写的，要对实例进行一些初始化的操作，如添加指定的属性时才写
+      2. 如果a类继承了b类，且a类中写了构造器，要么A类构造器中的super是必须要调用的
+      3. 类中定义的方法都是放在了类的原型对象上
+    */ 
     // 创建一个类
     class Person {
       // 构造器方法
@@ -16,25 +21,34 @@
         this.name = name
         this.age = age
       }
+      // 类中可以直接写赋值语句，如下面代码的含义是： 给Person的实例对象添加一个属性，名为a值为1
+      a = 1
       // 一般方法
       // say方法放在了类的原型对象上，供实例使用
-      // say方法中的this就是Person实例
+      // 通过Person实例调用say时,  say方法中的this就是Person实例
       say(){
         console.log(`我的名字是${this.name}, 我的年龄为${this.age}`)
       }
     }
     const p1 = new Person('小明', 18)
+    console.log(p1)
 
     p1.say()
 
 
     // 创建一个Student类，继承Person类
     class Student extends Person{
-
+      constructor(name, age, grade){
+        super(name, age)
+        this.grade = grade 
+      }
+      say(){
+        console.log(`我的名字是${this.name}, 我的年龄为${this.age},我读的是${this.grade}`)
+      }
     }
-    const s1 = new Student('小红', 18)
+    const s1 = new Student('小红', 18, '高一')
+    console.log(s1)
     s1.say()
-
   </script>
 </body>
 </html>
