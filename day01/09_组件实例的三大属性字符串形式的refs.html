@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component{
+      render() {
+        return (
+          <div>
+            <input type="text" ref='inputLeft'/>
+            <button onClick={this.showLeft}>点我提示左侧数据</button>
+            <input type="text" onBlur={this.showRight} placeholder="失去焦点提示数据"/>
+          </div>
+        )
+      }
+      showLeft = () => {
+        // 字符串形式的refs效率不高，不建议使用
+        console.log(this.refs.inputLeft.value)
+      }
+
+      showRight = () => {
+        console.log(111)
+      }
+    }
+
+    ReactDOM.render(<MyComponent/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>

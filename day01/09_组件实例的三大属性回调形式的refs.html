@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component{
+      state = {
+        isHot: true
+      }
+      render() {
+        const {isHot} = this.state
+        return (
+          <div>
+            <h1>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
+            {/*内联回调   
+             当ref是一个回调函数的时候，修改了state里面的数据，这个回调函数会被执行两次， 在修改state的数据的时候，ref的回调会被清除，导致第一次执行函数的时候节点为null*/}
+            {/*<input type="text" ref={c => {this.input1 = c, console.log("@", c)}}/>*/}
+            {/* 类绑定形式的ref
+              可以通过以下方法去解决多次调用的问题*/}
+            <input type="text" ref={this.showchange}/> 
+            <button onClick={this.showLeft}>点我提示左侧数据</button>
+            <input type="text" ref={c => this.input2 = c} onBlur={this.showRight} placeholder="失去焦点提示数据"/>
+            <button onClick={this.changeisHot}>点击切换天气</button>
+          </div>
+        )
+      }
+
+      showchange = (e) => {
+        console.log(e)
+      }
+      showLeft = () => {
+        console.log(this.input1.value)
+      }
+
+      showRight = () => {
+        console.log(this.input2.value)
+      }
+
+      changeisHot = () => {
+        const isHot = this.state.isHot
+        this.setState({
+          isHot: !isHot
+        })
+      }
+    }
+ 
+    ReactDOM.render(<MyComponent/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+  
+    class MyComponent extends React.Component{
+    // React.creatRef调用后返回一个容器，该容器可以存储被ref所标识的节点, 该容器是专人专用的，不可以给多个  
+      myRef = React.createRef()
+      render() {
+        return(
+          <div>
+            <div ref={this.myRef}>1111</div>
+            <button onClick={this.showmyRef}>点击展示myRef</button>
+          </div>
+        )
+      }
+      showmyRef  = () => {
+        console.log(this.myRef)
+      }
+    }
+    ReactDOM.render(<MyComponent/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>
