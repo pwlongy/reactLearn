@@ -15,9 +15,19 @@
     class MyComponent extends React.Component{
       render() {
         return (
-         <div></div>
+         <div>
+            用户名<input type='text' ref={c => this.username = c}/>  
+            密码<input type='text' ref={c => {this.password = c}}/>  
+            <button onClick={this.submit}>提交</button>
+          </div>
         )
       }
+      submit = () => {
+        // 当点击按钮后才去获取需要得到的数据这种类型属于非受控组件
+        alert(`用户名${this.username.value}密码${this.password.value}`)
+      }
+
+
      
     }
 
