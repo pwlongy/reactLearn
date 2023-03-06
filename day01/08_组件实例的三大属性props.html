@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <!-- 用于对组件标签进行限制 -->
+  <script src="../js/prop-types.js"></script>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component {
+      render(){
+        // props数据是只读的
+        // this.props.name = '小明'   会报错
+        return (
+          <div>
+            <ul>
+              <li>姓名： {this.props.name}</li>
+              <li>性别： {this.props.sex}</li>
+              <li>年龄： {this.props.age}</li>
+            </ul>
+          </div>
+        )
+      }
+    }
+    // 约束类型限制
+    MyComponent.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number,
+      // 约束传递的为方法
+      spack: PropTypes.func
+    }
+    // 设置默认值
+    MyComponent.defaultProps = {
+      sex: '男'
+    }
+
+    const user = {name:'tom', age:18 }
+    ReactDOM.render(<MyComponent {...user}/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>

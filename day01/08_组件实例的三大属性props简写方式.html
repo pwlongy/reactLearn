@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component{
+    static propTypes = {
+      name: PropTypes.string,
+      age: PropTypes.number,
+      sex: PropTypes.string
+    }
+    static defaultProps = {
+      age: 18,
+      sex: '男'
+    }
+      render(){
+        console.log(this )
+        const {name, age, sex} = this.props
+        return (
+          <div>
+            <ul>
+              <li>姓名：{name}</li>
+              <li>年龄：{age}</li>
+              <li>性别：{sex}</li>
+            </ul>
+          </div>
+        )
+      }
+    }
+ 
+    const user = {name: '小明'}
+    ReactDOM.render(<MyComponent {...user}/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>

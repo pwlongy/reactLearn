@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component{
+      render() {
+        return (
+         <div>
+            用户名<input type='text' ref={c => this.username = c}/>  
+            密码<input type='text' ref={c => {this.password = c}}/>  
+            <button onClick={this.submit}>提交</button>
+          </div>
+        )
+      }
+      submit = () => {
+        // 当点击按钮后才去获取需要得到的数据这种类型属于非受控组件
+        alert(`用户名${this.username.value}密码${this.password.value}`)
+      }
+
+
+     
+    }
+
+    ReactDOM.render(<MyComponent/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>
