@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2023-03-03 14:03:22
  * @LastEditors: sueRimn
- * @LastEditTime: 2023-03-03 14:09:21
+ * @LastEditTime: 2023-03-06 09:09:27
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +23,17 @@
   <script type="text/babel">
     // 创建函数式组件
     function Demo(){
-      return <h2>我是使用函数定义的组件（适用于【简单组件的使用】）</h2>
+      console.log(this) // 此处的this为undefined， 因为babel编译后开启了严格模式
+      return <h2>我是使用函数定义的组件（适用于【简单组件】的定义）</h2>
     }
+    // 渲染组件到页面上
     ReactDOM.render(<Demo/>, document.querySelector('#test'))
+    /*
+      执行了ReactDOM.render(<Demo/>, document.querySelector('#test')) 之后发生了什么
+        1. React解析组件标签， 找到了Demo组件
+        2. 发现组件是使用函数定义的，随后调用该函数， 将返回的虚拟DOM转化为真实DOM，随后呈现在页面中
+
+    */ 
   </script>
 </body>
 </html>
