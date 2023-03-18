@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+</head>
+<body>
+  
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component{
+      state = {
+        username: '',
+        password: ''
+      }
+ 
+      /*
+        高阶函数
+          如果一个函数符合下面2个规范中的任何一个，那么这个函数就是高阶函数
+            若A函数，接收的参数是一个函数，那么A函数就可以称之为高阶函数
+            若A函数，调用的返回值依然是一个函数，那么A函数就是一个高阶函数
+
+            常见的高阶函数有： promise、setTimeout、map、等等
+          
+          函数柯里化: 通过函数调用参数继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+      */ 
+      saveData = (dataType) => {
+        return (event) => {
+          this.setState({
+            [dataType]: event.target.value
+          })
+        }
+      }
+
+      showData = () => {
+        console.log(this.state)
+      }
+
+
+      render(){
+        return(
+          <div>
+            <h1>高阶函数</h1>
+            用户名<input type='text' onChange={this.saveData('username')}/>
+            密码<input type='text' onChange={this.saveData('password')}/>
+            <button onClick={this.showData}>提交</button>
+          </div>
+        )
+      }
+
+    }
+    ReactDOM.render(<MyComponent />, document.querySelector('.test'))
+  </script>
+</body>
+</html>

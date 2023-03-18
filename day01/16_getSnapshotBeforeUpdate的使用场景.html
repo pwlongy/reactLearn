@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/17.0.1/react.development.js"></script>
+  <script src="../js/17.0.1/react-dom.development.js"></script>
+  <script src="../js/17.0.1/babel.min.js"></script>
+  <style>
+    .list{
+      height: 210px;
+      background-color: blueviolet;
+      overflow: auto;
+    }
+    .news{
+      height: 30px;    
+    }
+  </style>
+</head>
+<body>
+  <div class="test"></div>
+  <script type="text/babel">
+    class MyComponent extends React.Component{
+      state = {
+        newArr : []
+      }
+      render(){
+        return(
+          <div className='list' ref="list">
+            {
+               this.state.newArr.map((item, index) => {
+                return <div className="news" key={index}>{item}</div>
+               })
+            }
+          </div>
+        )
+      }
+
+      // 组件挂载完毕
+      componentDidMount(){
+        
+        setInterval(() => {
+          // 生成一个新的数据
+          let tempNew = '新闻'+(this.state.newArr.length+1)
+          let {newArr} = this.state
+          console.log(11111)
+          this.setState({
+            newArr: [tempNew, ...newArr]
+          })
+        },1000)
+      }
+
+      //新的数据还没有挂载到DOM中
+      getSnapshotBeforeUpdate(){
+        return this.refs.list.scrollHeight
+      }
+
+      // 组件DOM数据渲染完毕
+      componentDidUpdate(preProps, preState, height){
+        this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+      }
+    }
+
+    // 渲染组件
+    ReactDOM.render(<MyComponent/>, document.querySelector('.test'))
+  </script>
+</body>
+</html>
