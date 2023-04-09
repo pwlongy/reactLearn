@@ -16,6 +16,12 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!-- 应用加壳的配置文件 -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- 当引用资源的时候需要使用 
+        不能添加 （.）这种形式的符号，可能会导致样式丢失 
+        %PUBLIC_URL%/
+        可以使用hash路由的方式去防止样式丢失问题
+    -->
     
     <title>React App</title>
   </head>
